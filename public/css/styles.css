@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+/**/
+#logo img {
+    height: 40px;
+}
+
+#cabeçalho {
+    padding: 1.2em 1.4em;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border-bottom: 1px solid #F6982d;
+}
+
+#cabeçalho ul {
+    display: flex;
+    list-style: none;
+}
+
+#cabeçalho ul li {
+    margin-left: 1em;
+}
+
+#cabeçalho ul li a {
+    text-decoration: none;
+    transition: .5s;
+    font-weight: bold;
+}
+
+#cabeçalho ul li a:hover {
+    color: #F6982d;
+}
+/**/
+body{
+    background-image: url(./img/mmm.jpeg);
+    background-size: cover;
+    background-position-y: -400px;
+
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.cabeçalho{
+    display: flex;
+    justify-content: left;
+    padding: 15px;
+}
+
+.cadastro{
+    background-color: #77b978;
+    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    padding: 15px 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.formulario{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.titulo{
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+p{
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.pergunta{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+input{
+    display: flex;
+    justify-content: center;
+    width: 350px;
+    font-family: 'Poppins', sans-serif;
+    color: #000000;
+    font-weight: 200;
+    text-align: left;
+    border: 2px solid #a5a4a4;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input:focus{
+    border: 2px solid #005234;
+}
+
+.retorno{
+    text-align: center;
+    color: #ffffff;
+    width: 700px;
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 600;
+    border-radius: 15px;
+    background-color: #A6674C;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 9px;
+}
+
+/* FOOTER */
+footer {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #F6982d;
+}   
+
+footer span {
+    font-weight: bold;
+    color: #fff;
+}
