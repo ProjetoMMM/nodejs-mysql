@@ -1,0 +1,22 @@
+<div class="dashboard">
+    <div class="title-container">
+        <h2>Dashboard</h2>
+        <a href="#" class="btn">Criar Requisição</a>
+    </div>
+    <h3>Suas requisições</h3>
+    <ul>
+        {{#each products}}
+            <li>
+                <span class="label">{{this.pname}}</span>
+                <span class="label">{{this.pqty}}</span>
+                <span class="actions">
+                    <a href="/" class="btn">Editar</a>
+                    <form action="/">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <input type="submit" value="Excluir" class="btn">
+                    </form>
+                </span>
+            </li>
+        {{/each}}
+    </ul>
+</div>
