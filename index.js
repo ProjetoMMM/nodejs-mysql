@@ -2,7 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
-//const flash = require('express-flash')
+const flash = require('express-flash')
 
 const app = express()
 
@@ -14,6 +14,7 @@ const User = require('./models/User')
 
 // Importando as routes
 const authRoutes = require('./routes/authRoutes')
+const productsRoutes = require('./routes/productsRoutes')
 
 // Template Engine
 app.engine('handlebars', exphbs.engine())
@@ -44,15 +45,15 @@ app.use(
         }),
         cookie: {
             secure: false,
-            maxAge: 360000,
-            expires: new Date(Date.now() + 360000),
+            maxAge: 30*24*60*60*1000,
+            expires: new Date(Date.now() + 30*24*60*60*1000),
             httpOnly: true
         }
     })
 )
 
 // Usar flash messages
-//app.use(flash())
+app.use(flash())
 
 // Conseguir mandar dados da sessao de um user pro front
 app.use((req, res, next) => {
@@ -65,6 +66,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/', authRoutes)
+app.use('/products/', productsRoutes)
 
 conn.sync().then(() => {
     app.listen(3000)
