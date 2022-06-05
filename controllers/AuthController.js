@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs')
 module.exports = class AuthController{
 
     static cadastro(req, res) {
-        res.render('auth/cadastro')
+        res.render('auth/cadastro', {style: "styles.css"})
     }
 
     static async cadastroPost(req, res) {
@@ -16,8 +16,8 @@ module.exports = class AuthController{
         const {name, email, password, confirmpassword} = req.body
 
         if(password != confirmpassword){
-            // talvez flash message para avisar
-            res.render('auth/cadastro')
+            req.flash('message', 'As senhas não batem!')
+            res.render('auth/cadastro', {style: "styles.css"})
 
             return
         }
@@ -26,8 +26,8 @@ module.exports = class AuthController{
         const checagem = await User.findOne({where: {email: email}})
 
         if(checagem) {
-            // flash message pra avisar
-            res.render('auth/cadastro')
+            req.flash('message', 'Já existe uma conta com esse e-mail!')
+            res.render('auth/cadastro', {style: "styles.css"})
         }
 
         // criar a senha criptografada
@@ -46,13 +46,92 @@ module.exports = class AuthController{
             // criar um id de sessao
             req.session.userid = novoUser.id
 
-            // talvez flash message pra avisar que cadastro foi realizado
+            req.flash('message', 'Seu cadastro foi realizado!')
 
             req.session.save(() => {
-                res.redirect('/cadastro')
+                res.redirect('/')
             })
         }catch(err) {
             console.log(err)
         }
+    }
+
+    static login(req, res) {
+        res.render('auth/login', {style: "Lstyles.css"})
+    }
+
+    static async loginPost(req, res) {
+        // Pegar do front as informações
+        const {email, password} = req.body
+
+        // Checar se já existe esse usuário
+        const user = await User.findOne({where: {email: email}})
+
+        if(!user){
+            req.flash('message', 'Esse login não existe!')
+            res.render('auth/login', {style: "Lstyles.css"})
+
+            return
+        }
+
+        // checar se senha fornecida bate com a senha do banco
+        const check = bcrypt.compareSync(password, user.password)
+
+        if(!check) {
+            req.flash('message', 'Senha inválida!')
+            res.render('auth/login', {style: "Lstyles.css"})
+
+            return
+        }
+
+        req.session.userid = user.id
+
+        // salvar a sessao do usuário
+        req.session.save(() => {
+            res.redirect('/')
+        })
+    }
+
+    static redefinir(req, res) {
+        res.render('auth/redefinir', {style: "Rstyles.css"})
+    }
+
+    static async redefinirPost(req, res) {
+        const {name, email, password, confirmpassword} = req.body
+        
+        const user = User.findOne({where: {name: name, email: email }})
+
+        // checar se o usuário existe
+        if(!user) {
+            req.flash('message', 'Esse usuário não existe!')
+            res.render('auth/cadastro', {style: "styles.css"})
+
+            return
+        }
+
+        if(password != confirmpassword) {
+            req.flash('message', 'As senhas não batem!')
+            res.render('auth/login', {style: "Lstyles.css"})
+
+            return
+        }
+
+        // criptografia da senha
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPassword = bcrypt.hashSync(password, salt)
+
+        // redefinir senha
+        await User.update({password: hashedPassword}, {where: {name: name ,email: email}})
+
+        res.render('auth/home')
+    }
+
+    static home(req, res) {
+        res.render('auth/home', {style: "Hstyles.css"})
+    }
+    
+    static logout(req, res) {
+        req.session.destroy()
+        res.redirect('/login')
     }
 }
