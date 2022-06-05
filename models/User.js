@@ -15,6 +15,14 @@ const User = db.define('User', {
         type: DataTypes.STRING,
         require: true
     },
+    cell: {
+        type: DataTypes.STRING,
+        require: true
+    },
+    state: {
+        type: DataTypes.STRING,
+        require: true
+    }
 })
 
 module.exports = User
