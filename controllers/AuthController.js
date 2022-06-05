@@ -13,7 +13,7 @@ module.exports = class AuthController{
 
     static async cadastroPost(req, res) {
         // pegando dados do POST vindo do front
-        const {name, email, password, confirmpassword} = req.body
+        const {name, email, password, confirmpassword, cell, state} = req.body
 
         if(password != confirmpassword){
             req.flash('message', 'As senhas não batem!')
@@ -37,7 +37,9 @@ module.exports = class AuthController{
         const user = {
             name,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            cell,
+            state,
         }
 
         try{ 
