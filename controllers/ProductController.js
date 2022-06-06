@@ -32,7 +32,8 @@ module.exports = class ProductController {
         const product = {
             pname: req.body.pname,
             pqty: req.body.pqty,
-            UserId: req.session.userid
+            UserId: req.session.userid,
+            reqst: req.body.reqst
         }
 
         try{
