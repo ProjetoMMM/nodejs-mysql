@@ -21,6 +21,11 @@ const Product = db.define('Product', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         required: true
+    },
+    data: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        required: false
     }
 })
 

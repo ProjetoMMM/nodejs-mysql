@@ -8,8 +8,9 @@
     <ul>
         {{#each products}}
             <li>
-                <span class="label">{{this.pname}}</span>
-                <span class="label">{{this.pqty}}</span>
+                <span class="label">Produto: {{this.pname}}</span>
+                <span class="label">Quantidade: {{this.pqty}}</span>
+                <span class="label">Data: {{this.data}}</span>
                 <span class="actions">
                     <a href="/products/redefinirProd/{{this.id}}" class="btn">Editar</a>
                     <form action="/products/deletar" method="POST">

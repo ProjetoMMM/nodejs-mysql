@@ -33,7 +33,8 @@ module.exports = class ProductController {
             pname: req.body.pname,
             pqty: req.body.pqty,
             UserId: req.session.userid,
-            reqst: req.body.reqst
+            reqst: req.body.reqst,
+            data: req.body.data
         }
 
         try{
@@ -91,7 +92,8 @@ module.exports = class ProductController {
 
         const product = {
             pname: req.body.pname,
-            pqty: req.body.pqty
+            pqty: req.body.pqty,
+            data: req.body.data
         }
 
        try{
@@ -122,8 +124,6 @@ module.exports = class ProductController {
         const users = await User.findAll({where: {agronomo: false}, include: Product, raw: true, nest: true})  
 
         console.log(users)
-
-        // ajeitar essa parte (talvez if)
 
         res.render('products/mostrarReqs', {users, style: 'Dstyles.css'})
     }

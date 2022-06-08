@@ -7,12 +7,16 @@
         <input type="hidden" name="id" value="{{product.id}}">
         <fieldset class="formulario">
             <div>
-                <label class="pergunta">Produto</label>
+                <label class="pergunta">Produto:</label>
                 <input type="text" name="pname" placeholder="{{product.pname}}" required>      
             </div>
             <div>
-                <label class="pergunta">Quantidade em quilos</label>
-                <input type="number" name="pqty" placeholder="{{product.pqty}}" required>
+                <label class="pergunta">Quantidade:</label>
+                <input type="text" name="pqty" placeholder="{{product.pqty}}" required>
+            </div>
+            <div>
+                <label class="pergunta">Data: </label>
+                <input type="text" name="data" placeholder="{{product.data}}" required>
             </div>
             <input type="submit" class="retorno" value="Redefinir"> 
     </fieldset>   
