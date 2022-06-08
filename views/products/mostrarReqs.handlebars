@@ -1,0 +1,16 @@
+<div class="dashboard">
+    <div class="title-container">
+       <!-- <h2>Dashboard</h2> -->
+    </div>
+    <h3> Produtos Disponíveis:</h3>
+    <ul>
+        {{#each users}}
+            <li>
+                <span class="label">Nome: {{this.name}}</span>
+                <span class="label">Celular: {{this.cell}}</span>
+                <span class="label">Produto: {{this.Products.pname}}</span>
+                <span class="label">Quantidade: {{this.Products.pqty}}</span>
+            </li>
+        {{/each}}
+    </ul>
+</div>
