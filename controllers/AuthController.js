@@ -28,6 +28,8 @@ module.exports = class AuthController{
         if(checagem) {
             req.flash('message', 'Já existe uma conta com esse e-mail!')
             res.render('auth/cadastro', {style: "styles.css"})
+
+            return
         }
 
         // criar a senha criptografada
@@ -128,7 +130,7 @@ module.exports = class AuthController{
         // redefinir senha
         await User.update({password: hashedPassword}, {where: {name: name ,email: email}})
 
-        res.render('auth/home')
+        res.render('auth/home', {style: 'Hstyles.css'})
     }
 
     static home(req, res) {
