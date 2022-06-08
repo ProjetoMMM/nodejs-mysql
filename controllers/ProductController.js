@@ -115,7 +115,7 @@ module.exports = class ProductController {
 
         await Product.destroy({where: {UserId: userId, id: id}})
 
-        res.render('products/dashboard', {style: "Dstyles.css"})
+        res.redirect('/products/dashboard')
     }
 
     static async mostrarReqs(req, res) {
